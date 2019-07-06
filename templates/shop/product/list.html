@@ -1,70 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Shop</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	
-	<style type="text/css">
 
-		.site-section{
-			height: 100%
-			width:100%;
-		}
 
-		.side, .main{
+{% extends 'shop/base.html' %}
 
-			padding: 10px
 
-		}
 
-	</style>
+{% block main %}
+<div class="card-columns">
+	{% for pd in product %}
+	<div class="card p-3">
+	    <div class="card-body">
+	      <h2><a href="{% url 'shop:product_detail' pd.id pd.slug %}">{{ pd.name }}</a></h2>
+	      <p>{{ pd.description }}</p>
+	      <p style="text-align: right;">Rs.{{ pd.price }}</p>	      
+	    </div>
+	 </div>
+	 {% endfor %}
+</div>
+{% endblock %}
 
-</head>
-<body>
-
-<!-- side menu -->
-
-<section class ='site-section'>
-
-	<div class="container">
-			<div class='row'>
-				<div class="col-lg-2 side" style=";background-color: grey">
-					<p>Catagory</p>
-					{% if catagory %}
-					{% for catagory in catagory %}
-					<div class="card">
-					  <ul class="list-group list-group-flush">
-					    <li class="list-group-item"><a href="{% url 'shop:product_list_by_catagory' catagory.slug %}">{{ catagory.name }}</a></li>					    
-					  </ul>
-					</div>
-					{% endfor %}
-					{% else %}
-					<p>activate this</p>
-					{% endif %}
-				</div>
-				<div class="col-lg-10  main">
-					{% for pd in product %}
-					<div class="card-columns">
-						<div class="card p-3">
-						    <div class="card-body">
-						      <h2>{{ pd.name }}</h2>
-						      <p>{{ pd.description }}</p>
-						      <p style="text-align: right;">{{ pd.price }}</p>
-						      <button type="button" class="btn btn-link">Add to cart</button>
-						    </div>
-						 </div>
-					</div>
-					{% endfor %}
-				</div>
-			</div>
-		
-	</div>
-
-	
-</section>
-
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</html>

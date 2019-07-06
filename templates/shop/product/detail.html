@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+
+{% block main %}
+
+
+<div class="card-columns">
+	<div class="card p-3">
+		<div class="card-body">
+			<h2>{{ product.name }}</h2>
+			<div class="container">
+				<p> {{ product.description }}</p>
+			</div>
+			<div class="container">
+				<p> Rs.{{ product.price }}</p>
+				<form action="{% url 'cart:cart_add' product.id %}" method="POST">
+					{{ form }}
+					{% csrf_token %}
+					<input type="submit" value="Add to cart">
+				</form>
+			</div>
+			
+
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
