@@ -16,7 +16,7 @@ def cart_add(request, product_id):
     if form.is_valid():
 
         cd = form.cleaned_data
-        cart.add(product=product, quantity=cd['quantity'], update_quanity=cd[update])
+        cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
 
     return redirect('cart:cart_detail')
 
@@ -36,4 +36,8 @@ def cart_detail(request):
 
     cart = Cart(request)
 
-    return render(request, 'cart/cart_detail.html', {'cart': cart})
+    for item in cart:
+
+        item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'], 'update': True})
+
+    return render(request, 'shop/cart/cart_detail.html', {'cart': cart})

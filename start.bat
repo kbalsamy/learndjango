@@ -1,2 +1,3 @@
+
 @echo off
-cmd /k "cd /d C:\Users\home\Documents\webApp\Scripts & activate & cd /d C:\Users\home\Documents\webApp\learn & python manage.py runserver"
+cmd /k "cd /d D:\Karthikeyan personal\Web application\event\Scripts & activate & cd /d D:\Karthikeyan personal\Web application\learndjango"

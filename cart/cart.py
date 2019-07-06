@@ -29,15 +29,15 @@ class Cart():
             self.cart[product_id] = {'quantity': 0, 'price': str(product.price)}
 
         if update_quantity:
-            self.cart[product_id][quantity] = quantity
+            self.cart[product_id]['quantity'] = quantity
         else:
-            self.cart[product_id][quantity] += quantity
+            self.cart[product_id]['quantity'] += quantity
 
         self.save()
 
     def save(self):
 
-        self.session.get(settings.CART_SESSION_ID) = self.cart
+        self.session[settings.CART_SESSION_ID] = self.cart
 
         self.session.modified = True
 
